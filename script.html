@@ -1,0 +1,67 @@
+<html>
+    <body>
+        <script>
+            function bol() {
+            let rei = parseFloat(n3_1.value) + parseFloat(n3_2.value) + parseFloat(n3_3.value) +parseFloat(n3_4.value);
+            let rem = parseFloat(n2_1.value) + parseFloat(n2_2.value) + parseFloat(n2_3.value) +parseFloat(n2_4.value);
+            let totalQuimica = parseFloat(qui_1.value) + parseFloat(qui_2.value) + parseFloat(qui_3.value) + parseFloat(qui_4.value);
+            let refinal = parseFloat(n3_1.value) + parseFloat(n3_2.value) + parseFloat(n3_3.value) + parseFloat(n3_4.value) + parseFloat(n2_1.value) + parseFloat(n2_2.value) + parseFloat(n2_3.value) +parseFloat(n2_4.value) + parseFloat(qui_1.value) + parseFloat(qui_2.value) + parseFloat(qui_3.value) + parseFloat(qui_4.value);
+            console.log(totalQuimica);
+            result_qu.innerHTML = `
+            <strong>Quimica:</strong>
+            <ul>
+                <li>1º bimestre: <b>${qui_1.value}</b></li>
+                <li>2º bimestre: <b>${qui_2.value}</b></li>
+                <li>3º bimestre: <b>${qui_3.value}</b></li>
+                <li>4º bimestre: <b>${qui_4.value}</b></li>
+                <li>Status:${isApproval(totalQuimica)}</li>
+            </ul>
+            `;
+            console.log(totalQuimica);
+            result_mat.innerHTML = `
+            <strong>Matematica:</strong>
+            <ul>
+                <li>1º bimestre: <b>${n2_1.value}</b></li>
+                <li>2º bimestre: <b>${n2_2.value}</b></li>
+                <li>3º bimestre: <b>${n2_3.value}</b></li>
+                <li>4º bimestre: <b>${n2_4.value}</b></li>
+                <li>Status:${isApproval(rem)}</li>
+            </ul>
+            `;
+            console.log(rem);
+            result_in.innerHTML = `
+            <strong>Inglês:</strong>
+            <ul>
+                <li>1º bimestre: <b>${n3_1.value}</b></li>
+                <li>2º bimestre: <b>${n3_2.value}</b></li>
+                <li>3º bimestre: <b>${n3_3.value}</b></li>
+                <li>4º bimestre: <b>${n3_4.value}</b></li>
+                <li>Status:${isApproval(rei)}</li>
+            </ul>
+            `;
+            console.log(rei);
+            result_fin.innerHTML = `
+            <strong>Total:</strong>
+            <ul>
+                <li>Nota total: <b>${refinal}</b></li>
+                <li>Status:${isApproval1(refinal)}</li>
+            </ul>
+            `;
+        }
+
+        function isApproval(params) {
+            if (params >= 60)
+            return "APROVADO" 
+            else
+            return "REPROVADO"
+        }
+        function isApproval1(params) {
+            if (params >= 180)
+            return "APROVADO" 
+            else
+            return "REPROVADO"
+        }
+        
+        </script>
+    </body>
+</html>

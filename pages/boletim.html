@@ -1,0 +1,195 @@
+<html>
+
+<head>
+    <title>Teste de boletim</title>
+    <link rel="stylesheet" href="../boletim.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url(../images/v1016-b-08.jpg);" data-bs-theme="dark">
+    <div style="margin-bottom: 20px;"></div>
+
+
+
+
+
+
+
+    <div class="caixabolet">
+        <div class="quadro">
+            <p></p>
+            <p></p>
+            <p>
+            </p>
+            <div>
+                <P><h3><b>Boletim</b></h3></P>
+                <div>
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="nomeMateria" placeholder="Nome de usuário"
+                            style="background-color: transparent; border: none; border-bottom: 0.125rem solid #59595b;">
+                        <label for="nomeUsuario">Materia</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="number" id="qui_1" placeholder="Nome de usuário"
+                            style="background-color: transparent; border: none; border-bottom: 0.125rem solid #59595b;">
+                        <label for="nomeUsuario">1º Bimestre</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="number" id="qui_2" placeholder="Nome de usuário"
+                            style="background-color: transparent; border: none; border-bottom: 0.125rem solid #59595b;">
+                        <label for="nomeUsuario">2º Bimestre</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="number" id="qui_3" placeholder="Nome de usuário"
+                            style="background-color: transparent; border: none; border-bottom: 0.125rem solid #59595b;">
+                        <label for="nomeUsuario">3º Bimestre</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="number" id="qui_4" placeholder="Nome de usuário"
+                            style="background-color: transparent; border: none; border-bottom: 0.125rem solid #59595b;">
+                        <label for="nomeUsuario">4º Bimestre</label>
+                    </div>
+                    <div style="margin-bottom: 30px;"></div>
+                    <button class="botao" onclick="save()">Verificar Notas</button>
+                </div>
+            </div>
+            <p></p>
+            <p></p>
+        </div>
+        <div class="quadro" style="margin-right: 130px; background-color: aliceblue;">
+            <p class="m-3 p-2" id="resultNotas"></p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"> -->
+
+
+    <script>
+        function bol() {
+            let rei = parseFloat(n3_1.value) + parseFloat(n3_2.value) + parseFloat(n3_3.value) + parseFloat(n3_4.value);
+            let rem = parseFloat(n2_1.value) + parseFloat(n2_2.value) + parseFloat(n2_3.value) + parseFloat(n2_4.value);
+            let totalQuimica = parseFloat(qui_1.value) + parseFloat(qui_2.value) + parseFloat(qui_3.value) + parseFloat(qui_4.value);
+            let refinal = parseFloat(n3_1.value) + parseFloat(n3_2.value) + parseFloat(n3_3.value) + parseFloat(n3_4.value) + parseFloat(n2_1.value) + parseFloat(n2_2.value) + parseFloat(n2_3.value) + parseFloat(n2_4.value) + parseFloat(qui_1.value) + parseFloat(qui_2.value) + parseFloat(qui_3.value) + parseFloat(qui_4.value);
+            console.log(totalQuimica);
+            result_qu.innerHTML = `
+            <strong>Quimica:</strong>
+            <ul>
+                <li>1º bimestre: <b>${qui_1.value}</b></li>
+                <li>2º bimestre: <b>${qui_2.value}</b></li>
+                <li>3º bimestre: <b>${qui_3.value}</b></li>
+                <li>4º bimestre: <b>${qui_4.value}</b></li>
+                <li>Status:${isApproval(totalQuimica)}</li>
+            </ul>
+            `;
+            console.log(totalQuimica);
+            result_mat.innerHTML = `
+            <strong>Matematica:</strong>
+            <ul>
+                <li>1º bimestre: <b>${n2_1.value}</b></li>
+                <li>2º bimestre: <b>${n2_2.value}</b></li>
+                <li>3º bimestre: <b>${n2_3.value}</b></li>
+                <li>4º bimestre: <b>${n2_4.value}</b></li>
+                <li>Status:${isApproval(rem)}</li>
+            </ul>
+            `;
+            console.log(rem);
+            result_in.innerHTML = `
+            <strong>Inglês:</strong>
+            <ul>
+                <li>1º bimestre: <b>${n3_1.value}</b></li>
+                <li>2º bimestre: <b>${n3_2.value}</b></li>
+                <li>3º bimestre: <b>${n3_3.value}</b></li>
+                <li>4º bimestre: <b>${n3_4.value}</b></li>
+                <li>Status:${isApproval(rei)}</li>
+            </ul>
+            `;
+            console.log(rei);
+            result_fin.innerHTML = `
+            <strong>Total:</strong>
+            <ul>
+                <li>Nota total: <b>${refinal}</b></li>
+                <li>Status:${isApproval1(refinal)}</li>
+            </ul>
+            `;
+        }
+
+        function isApproval(params) {
+            if (params >= 60)
+                return "APROVADO"
+            else
+                return "REPROVADO"
+        }
+        function isApproval1(params) {
+            if (params >= 180)
+                return "APROVADO"
+            else
+                return "REPROVADO"
+        }
+  // 5) Verificação de notas: peça ao usuário para inserir todas as notas no ano em cada matéria e, por fim, mostre se ele foi aprovado ou reprovado.
+            // Pelo menos 3 matérias
+            // Pelo menos 3 etapa
+        // Exibir se aprovado ou reprovado com o resultado da média final em cada matéria 
+        let materia = { id: 0, nome: "", notas: [], total: 0, printInfo: "" };
+        let materias = [];
+        let user = {nome: "",instituicao:"", curso:""};
+        function save() {
+            let inputNotas = [];
+            let totalNotas = 0;
+            user.nome = nomeUsuario.value;
+            user.instituicao = nomeInstituicao.value;
+            let resultados = `<b>BOLETIM DE: ${user.nome.toLocaleUpperCase()}</b><br><b>INSTITUIÇÃO/ESCOLA: ${user.instituicao.toLocaleUpperCase()} </b>`;
+
+            document.querySelectorAll("div.input-group input").forEach(e => {
+                inputNotas.push(parseFloat(e.value))
+                totalNotas += parseFloat(e.value);
+            })
+
+            materias.push(
+                {
+                    id: materia.id++,
+                    nome: nomeMateria.value.toLocaleUpperCase(),
+                    notas: inputNotas,
+                    total: totalNotas,
+                    info: `<hr>
+                            RESULTADO DE: <b>${nomeMateria.value.toLocaleUpperCase()}</b> 
+                            <ul class="list-group">
+                                <li class="list-group-item"><b>1º Bimestre:</b> ${inputNotas[0]}</li>
+                                <li class="list-group-item"><b>2º Bimestre:</b> ${inputNotas[1]}</li>
+                                <li class="list-group-item"><b>3º Bimestre:</b> ${inputNotas[2]}</li>
+                                <li class="list-group-item"><b>4º Bimestre:</b> ${inputNotas[3]}</li>
+                                <li class="list-group-item">TOTAL FINAL: <b>${totalNotas}</b></li>
+                                <li class="list-group-item">STATUS: <b>${isAprovadoOuReprovado(totalNotas)}</b></li>
+                            </ul>
+                            `
+                }
+            )
+
+            console.log(materias)
+
+            materias.forEach(e => {
+                resultados += `<br>` + e.info;
+            })
+
+            resultNotas.innerHTML = resultados;
+        }
+        function isAprovadoOuReprovado(valor) {
+            if (valor >= 60) {
+                return "APROVADO"
+            } else {
+                return "REPROVADO"
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>
